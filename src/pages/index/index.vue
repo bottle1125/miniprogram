@@ -59,7 +59,7 @@ export default {
       })
     },
     clickHandle (msg, ev) {
-      console.log('clickHandle:', msg, ev)
+      // console.log('clickHandle:', msg, ev)
     },
     onUpdate() {
       this.show = true;
@@ -67,14 +67,13 @@ export default {
     clickMethod() {
       wx.cloud.init()
       wx.cloud.callFunction({
-        name: 'add',
+        name: 'getCources',
         data: {
-          a: 1,
-          b: 2
+          classId: "41"
         }
       })
       .then(res => {
-        console.log(res.result)
+        console.log(JSON.parse(res.result[0].data));
       })
       .catch(console.error)
     }
