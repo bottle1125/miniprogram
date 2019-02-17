@@ -1,44 +1,66 @@
 <template>
-  <div class="container" @click="clickHandle('test click', $event)">
-
-    <button @click="clickMethod">1111111</button>
-
-    <div class="userinfo" @click="bindViewTap">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName" @update="onUpdate"></card>
-      </div>
-    </div>
-
-    <div class="usermotto">
-      <div class="user-motto">
-        <card :text="motto"></card>
-        <p id="words" v-if="show">123456</p>
-      </div>
-    </div>
-
-    <form class="form-container">
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
-    <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
+  <div class="container">
+    <ul>
+      <li v-for="(item,inx) in classes" :key="item.classId">
+        <navigator
+          :url="'/pages/question/q' + pageMap[inx]"
+          hover-class="navigator-hover"
+        >
+          {{ item.title }}
+        </navigator>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import card from '@/components/card'
-
+const pageMap = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l']
 export default {
   data () {
     return {
-      motto: 'Hello World',
-      userInfo: {},
-      show: false
+      pageMap: pageMap,
+      classes: [{
+        classId: '11',
+        title: '题目找字1'
+      }, {
+        classId: '12',
+        title: '题目找字2'
+      }, {
+        classId: '13',
+        title: '题目找字3'
+      }, {
+        classId: '21',
+        title: '答案找字'
+      }, {
+        classId: '22',
+        title: '信号灯'
+      }, {
+        classId: '23',
+        title: '记忆题'
+      }, {
+        classId: '31',
+        title: '交通标志'
+      }, {
+        classId: '32',
+        title: '指示仪表'
+      }, {
+        classId: '33',
+        title: '地面标线'
+      }, {
+        classId: '41',
+        title: '看图讲解'
+      }, {
+        classId: '42',
+        title: '常识题'
+      }, {
+        classId: '43',
+        title: '其他'
+      }]
     }
   },
 
   components: {
-    card
+    
   },
 
   methods: {

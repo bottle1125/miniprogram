@@ -1,8 +1,18 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/index",
-    "pages/counter/index"
+    "pages/question/qa",
+    "pages/question/qb",
+    "pages/question/qc",
+    "pages/question/qd",
+    "pages/question/qe",
+    "pages/question/qf",
+    "pages/question/qg",
+    "pages/question/qh",
+    "pages/question/qi",
+    "pages/question/qj",
+    "pages/question/qk",
+    "pages/question/ql"
   ],
   "window": {
     "backgroundTextStyle": "light",
