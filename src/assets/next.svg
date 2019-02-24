@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>底部背景</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="题库" transform="translate(-325.000000, -736.000000)" fill="#7F8389" fill-rule="nonzero">
+            <g id="底部背景" transform="translate(0.000000, 728.000000)">
+                <g id="Group-8" transform="translate(325.000000, 8.000000)">
+                    <path d="M7.5,16.5 L17,16.5 C17.2761424,16.5 17.5,16.7238576 17.5,17 L17.5,18 C17.5,18.2761424 17.2761424,18.5 17,18.5 L5.5,18.5 C5.22385763,18.5 5,18.2761424 5,18 L5,6.5 C5,6.22385763 5.22385763,6 5.5,6 L6.5,6 C6.77614237,6 7,6.22385763 7,6.5 L7,16 C7,16.2761424 7.22385763,16.5 7.5,16.5 Z" id="Back" transform="translate(11.250000, 12.250000) scale(-1, 1) rotate(-315.000000) translate(-11.250000, -12.250000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

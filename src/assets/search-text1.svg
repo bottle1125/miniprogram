@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Group 6</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页" transform="translate(-41.000000, -291.000000)">
+            <g id="Group-6" transform="translate(41.000000, 291.000000)">
+                <rect id="Rectangle-2" fill="#FE6B00" x="0" y="0" width="40" height="40" rx="12"></rect>
+                <circle id="Oval-3" fill="#FFFFFF" cx="20" cy="20" r="11"></circle>
+                <circle id="Oval-3" fill="#FE6B00" cx="20" cy="20" r="8"></circle>
+                <polygon id="Line-5" fill="#FFFFFF" fill-rule="nonzero" points="26.0862172 26.4650955 27.5349045 25.0862172 33.4274546 31.277092 31.9787673 32.6559703"></polygon>
+                <polygon id="T" fill="#FFFFFF" fill-rule="nonzero" points="15.734248 15.6943359 24.4749707 15.6943359 24.4749707 17.9921875 21.5423535 17.9921875 21.5423535 25 18.6668652 25 18.6668652 17.9921875 15.734248 17.9921875"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

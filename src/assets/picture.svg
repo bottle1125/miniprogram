@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Group 13</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页" transform="translate(-41.000000, -666.000000)">
+            <g id="Group-13" transform="translate(41.000000, 666.000000)">
+                <rect id="Rectangle-2" fill="#7DCD42" x="0" y="0" width="40" height="40" rx="12"></rect>
+                <polygon id="Triangle" fill="#FFFFFF" points="16 16 25 28 7 28"></polygon>
+                <polygon id="Triangle" fill="#FFFFFF" points="22.5 19 29 28 16 28"></polygon>
+                <circle id="Oval-4" fill="#FFFFFF" cx="27" cy="14" r="3"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

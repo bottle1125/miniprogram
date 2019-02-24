@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Group 6</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页" transform="translate(-294.000000, -291.000000)">
+            <g id="Group-6" transform="translate(294.000000, 291.000000)">
+                <rect id="Rectangle-2" fill="#B8E022" x="0" y="0" width="40" height="40" rx="12"></rect>
+                <path d="M20,31 C13.9248678,31 9,26.0751322 9,20 C9,13.9248678 13.9248678,9 20,9 C26.0751322,9 31,13.9248678 31,20 C31,26.0751322 26.0751322,31 20,31 Z M20,28 C24.418278,28 28,24.418278 28,20 C28,15.581722 24.418278,12 20,12 C15.581722,12 12,15.581722 12,20 C12,24.418278 15.581722,28 20,28 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                <polygon id="Line-5" fill="#FFFFFF" fill-rule="nonzero" points="26.0862172 26.4650955 27.5349045 25.0862172 33.4274546 31.277092 31.9787673 32.6559703"></polygon>
+                <polygon id="T" fill="#FFFFFF" fill-rule="nonzero" points="15.734248 15.6943359 24.4749707 15.6943359 24.4749707 17.9921875 21.5423535 17.9921875 21.5423535 25 18.6668652 25 18.6668652 17.9921875 15.734248 17.9921875"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

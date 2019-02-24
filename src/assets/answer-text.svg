@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Group 9</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页" transform="translate(-41.000000, -416.000000)">
+            <g id="Group-9" transform="translate(41.000000, 416.000000)">
+                <rect id="Rectangle-2" fill="#E0295A" x="0" y="0" width="40" height="40" rx="12"></rect>
+                <circle id="Oval-5" fill="#FFFFFF" cx="20" cy="20" r="10"></circle>
+                <polygon id="Rectangle-4" fill="#E0295A" fill-rule="nonzero" transform="translate(23.241311, 16.636166) rotate(35.000000) translate(-23.241311, -16.636166) " points="25.163681 8.30735861 28.1289246 8.76269407 25.6409428 24.9649737 18.3536972 24.9649737 18.3536972 21.9649737 23.0664515 21.9649737"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

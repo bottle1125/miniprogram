@@ -4,6 +4,7 @@
             :model="contents[currentIndex]" 
             :index.sync="currentIndex"
             :total="contents.length"
+            :result-map="resultMap"
             @openResultList="openResultList"
         />
         
@@ -24,7 +25,8 @@ export default {
             classId: '',
             contents: [{}],
             currentIndex: 0,
-            showList: false
+            showList: false,
+            resultMap: {}
         };
     },
     components: {

@@ -12,6 +12,7 @@
 	"compileType": "miniprogram",
 	"appid": "wx530aada51a227d2b",
 	"projectname": "my-miniprogram",
+	"cloudfunctionRoot": "cloud-functions/",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -21,14 +22,24 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "题目",
+					"pathName": "pages/question/qa",
+					"scene": null
+				}
+			]
 		}
-	},
-	"cloudfunctionRoot": "./cloud-functions"
+	}
 }

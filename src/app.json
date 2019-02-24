@@ -1,6 +1,9 @@
 {
   "pages": [
+    "pages/pre/index",
+    "pages/login/index",
     "pages/index/index",
+    "pages/index/code",
     "pages/question/qa",
     "pages/question/qb",
     "pages/question/qc",
@@ -16,8 +19,8 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#42CD8C",
+    "navigationBarTitleText": "易学车",
+    "navigationBarTextStyle": "white"
   }
 }
