@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
-    <title>底部背景</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="题库" transform="translate(-29.000000, -736.000000)" fill="#09BB07" fill-rule="nonzero">
-            <g id="底部背景" transform="translate(0.000000, 728.000000)">
-                <g id="Group-7" transform="translate(29.000000, 8.000000)">
-                    <g id="Back-2" transform="translate(5.000000, 3.000000)">
-                        <path d="M5.5,13.5 L15,13.5 C15.2761424,13.5 15.5,13.7238576 15.5,14 L15.5,15 C15.5,15.2761424 15.2761424,15.5 15,15.5 L3.5,15.5 C3.22385763,15.5 3,15.2761424 3,15 L3,3.5 C3,3.22385763 3.22385763,3 3.5,3 L4.5,3 C4.77614237,3 5,3.22385763 5,3.5 L5,13 C5,13.2761424 5.22385763,13.5 5.5,13.5 Z" id="Back" transform="translate(9.250000, 9.250000) rotate(-315.000000) translate(-9.250000, -9.250000) "></path>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M8.593 12.604l6.718 6.717a.5.5 0 0 1 0 .707l-.707.707a.5.5 0 0 1-.708 0l-8.131-8.131a.5.5 0 0 1 0-.708l8.131-8.131a.5.5 0 0 1 .708 0l.707.707a.5.5 0 0 1 0 .707l-6.718 6.717a.5.5 0 0 0 0 .708z" fill="#09BB07" fill-rule="nonzero"/></svg>

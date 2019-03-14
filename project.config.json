@@ -10,9 +10,10 @@
 	},
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
-	"appid": "wx530aada51a227d2b",
+	"appid": "wx341676620f2a28ee",
 	"projectname": "my-miniprogram",
 	"cloudfunctionRoot": "cloud-functions/",
+	"libVersion": "2.2.0",
 	"condition": {
 		"search": {
 			"current": -1,

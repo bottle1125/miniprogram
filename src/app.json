@@ -1,26 +1,92 @@
 {
   "pages": [
-    "pages/pre/index",
-    "pages/login/index",
-    "pages/index/index",
-    "pages/index/code",
-    "pages/question/qa",
-    "pages/question/qb",
-    "pages/question/qc",
-    "pages/question/qd",
-    "pages/question/qe",
-    "pages/question/qf",
-    "pages/question/qg",
-    "pages/question/qh",
-    "pages/question/qi",
-    "pages/question/qj",
-    "pages/question/qk",
-    "pages/question/ql"
+      {
+        "path": "pages/pre/index",
+        "config": {
+          "enablePullDownRefresh": false
+        }
+      }, {
+        "path": "pages/login/index",
+        "config": {
+          "enablePullDownRefresh": false
+        }
+      }, {
+        "path": "pages/index/index",
+        "config": {
+          "enablePullDownRefresh": false
+        }
+      }, {
+        "path": "pages/index/code",
+        "config": {
+          "enablePullDownRefresh": false
+        }
+      }, {
+        "path": "pages/question/qa",
+        "config": {
+          "enablePullDownRefresh": false
+        }
+      }, {
+        "path": "pages/question/qb",
+        "config": {
+          "enablePullDownRefresh": false
+        }  
+      }, {
+        "path": "pages/question/qc",
+        "config": {
+          "enablePullDownRefresh": false
+        }  
+      }, {
+        "path": "pages/question/qd",
+        "config": {
+          "enablePullDownRefresh": false
+        }  
+      }, {
+        "path": "pages/question/qe",
+        "config": {
+          "enablePullDownRefresh": false
+        }  
+      }, {
+        "path": "pages/question/qf",
+        "config": {
+          "enablePullDownRefresh": false
+        } 
+      }, {
+        "path": "pages/question/qg",
+        "config": {
+          "enablePullDownRefresh": false
+        } 
+      }, {
+        "path": "pages/question/qh",
+        "config": {
+          "enablePullDownRefresh": false
+        }  
+      }, {
+        "path": "pages/question/qi",
+        "config": {
+          "enablePullDownRefresh": false
+        }  
+      }, {
+        "path": "pages/question/qj",
+        "config": {
+          "enablePullDownRefresh": false
+        }  
+      }, {
+        "path": "pages/question/qk",
+        "config": {
+          "enablePullDownRefresh": false
+        }  
+      }, {
+        "path": "pages/question/ql",
+        "config": {
+          "enablePullDownRefresh": false
+        } 
+      }
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#42CD8C",
-    "navigationBarTitleText": "易学车",
+    "navigationBarTitleText": "一喜学车",
     "navigationBarTextStyle": "white"
-  }
+  },
+  "cloud": true
 }

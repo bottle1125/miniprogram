@@ -3,7 +3,7 @@ const cloud = require('wx-server-sdk')
 const shortid = require('shortid')
 
 cloud.init({
-  env: 'te-3db4f8'
+  env: 'drive-223675'
 })
 
 const db = cloud.database()

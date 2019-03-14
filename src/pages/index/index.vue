@@ -6,7 +6,7 @@
           <img :src="userInfo.avatarUrl" alt="">
         </span>
         <span class="name">{{ userInfo.nickName }}</span>
-        <span class="generate-code" @click="createCode">生成激活码</span>
+        <span class="generate-code" v-if="userInfo.master" @click="createCode">生成激活码</span>
       </div>
     </header>
     <div class="bottom">
@@ -61,7 +61,7 @@ export default {
         title: '记忆题'
       }, {
         classId: '31',
-        icon: require('../../assets/traffic.svg'),
+        icon: require('../../assets/traffic.png'),
         title: '交通标志'
       }, {
         classId: '32',
@@ -89,13 +89,22 @@ export default {
 
   methods: {
     createCode() {
+      if(this.loading) {
+        return;
+      }
+
+      wx.showLoading({
+        title: '生成中，请稍后'
+      });
+
+      this.loading = true;
       wx.cloud.callFunction({
           name: 'createCode',
           data: {}
       })
       .then(res => {
         const code = res.result.code;
-        wx.cloud.init({ env: 'test' })
+        wx.cloud.init({ env: 'drive' })
         const db = wx.cloud.database()
         db.collection('codes')
         .add({
@@ -104,12 +113,22 @@ export default {
             }
         })
         .then(res => {
+          this.loading = false;
+          wx.hideLoading();
           wx.navigateTo({
             url: '/pages/index/code?code=' + code
           })
         })
       })
     }
+  },
+
+  onShareAppMessage(res) {
+      return {
+          title: '苏锦成教练为你特别奉献',
+          path: '/pages/pre/index',
+          imageUrl: 'https://6472-drive-223675-1258743257.tcb.qcloud.la/poster.png'
+      }
   },
   onShow() {
     this.userInfo = wx.getStorageSync('user_info') || null;
@@ -121,9 +140,9 @@ export default {
 .container {
   .header {
     width: 100%;
-    height: 186rpx;
+    height: 215rpx;
     background: #42CD8C;
-    padding-top: 10rpx;
+    padding-top: 32rpx;
     padding-left: 40rpx;
 
     button {
@@ -172,7 +191,8 @@ export default {
 
   .bottom {
     position: absolute;
-    top: 165rpx;
+    top: 197rpx;
+    border-bottom: 1px solid #eee;
     border-top-left-radius: 24rpx;
     border-top-right-radius: 24rpx;
     background: #fff;
@@ -192,7 +212,8 @@ export default {
       padding-top: 50rpx;
       width: 250rpx;
       height: 250rpx;
-      border: 1rpx solid #eee;
+      border-top: 1rpx solid #eee;
+      border-right: 1rpx solid #eee;
 
       .icon {
         display: block;

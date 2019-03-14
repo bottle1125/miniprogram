@@ -1,11 +1,11 @@
 <template>
-    <div class='mask' v-if="show" @click="clickMask">
+    <div class='mask' @click="clickMask">
         <div 
             class='modal-content' 
         >
             <header class="modal-title">技巧讲解(打开声音)</header>
             <div class='main-content'>
-                <div>{{ text }}</div>
+                <div v-html="_text"></div>
             </div>
             <div class='modal-btn-wrapper'>
                 <div class='cancel-btn' style='color:rgba(7,17,27,0.6)' @click.stop="cancel">关闭</div>
@@ -16,19 +16,35 @@
 </template>
 <script>
 export default {
-    props: ['show', 'text'],
+    props: ['text', 'keyword', 'keyAnswer'],
     data() {
         return {};
     },
+    computed: {
+        _text() {
+            const keyword = this.keyword || this.keyAnswer;
+            const array = keyword.split('，');
+            console.log(array);
+            let text = this.text;
+            if(keyword && this.text) {
+                array.forEach(item => {
+                    console.log(item);
+                    text = text.replace(item, '<span class="blink">' + item + '</span>');
+                    console.log(text);
+                })
+                return text;
+            }
+
+            return this.text;
+        }
+    },
     methods: {
         clickMask() {
-            this.$emit('update:show', false);
-            this.$emit('cancel');
+            this.$emit('close', false);
         },
 
         cancel() {
-            this.$emit('update:show', false);
-            this.$emit('cancel');
+            this.$emit('close');
         },
 
         confirm() {
@@ -38,6 +54,29 @@ export default {
 }
 </script>
 <style lang="less">
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+@-webkit-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+.blink {
+    font-size: 50rpx;
+    font-weight: bold;
+    color: #e60000;
+    animation: blink 1s linear infinite;  
+    /* 其它浏览器兼容性前缀 */
+    -webkit-animation: blink 1s linear infinite;
+    -moz-animation: blink 1s linear infinite;
+    -ms-animation: blink 1s linear infinite;
+    -o-animation: blink 1s linear infinite;
+}
 .mask{
   position: absolute;
   left: 0;

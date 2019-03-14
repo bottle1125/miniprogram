@@ -6,7 +6,7 @@ import Question from '@/components/Question';
 export default {
     data() {
         return {
-            classId: '33'
+            classId: '41'
         }
     },
     components: {

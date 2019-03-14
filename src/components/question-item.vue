@@ -8,13 +8,19 @@
             <img src="../assets/audio.svg" alt="">
             技巧讲解
         </p>
+        <div class="image-box" v-if="model.content_img">
+            <img mode="aspectFit" :src="contentImage" alt="">
+        </div>
+
         <ul class="checkbox-container">
             <li 
                 class="checkbox"
                 v-for="(opt, inx) in options" 
                 :key="inx"
-                @click="selectAnswer(opt.index)">
-                <span class="label">{{ opt.label }}</span>
+                @click="selectAnswer(inx)">
+                <span class="label" v-if="!opt.checked">{{ opt.label }}</span>
+                <img v-else-if="inx === rightInx" class="right-answer" src="../assets/right.svg"/>
+                <img v-else class="false-answer" src="../assets/false.svg" />
                 <span class="value">{{ opt.value }}</span>
             </li>
         </ul>
@@ -22,9 +28,10 @@
         <footer class="fixed-footer" :class="{'is-iphone-x': isIPX}">
             <div @click="goToPrevious" class="menu-item">
                 <span class="menu-icon">
-                    <img src="../assets/last.svg" alt="">
+                    <img v-if="_index > 1" src="../assets/last.svg" alt="">
+                    <img v-else src="../assets/previous-invalid.png" alt="">
                 </span>
-                <span class="menu-key last-one">上一题</span>
+                <span class="menu-key" :class="{'valid-one': _index > 1}">上一题</span>
             </div>
             <div @click="showList" class="menu-item">
                 <span class="menu-icon">
@@ -40,23 +47,27 @@
             </div>
             <div @click="goToNext" class="menu-item">
                 <span class="menu-icon">
-                    <img src="../assets/next.svg" alt="">
+                    <img v-if="_index < total" src="../assets/next.png" alt="">
+                    <img v-else src="../assets/next.svg" alt="">
                 </span>
-                <span class="menu-key">下一题</span>
+                <span class="menu-key" :class="{'valid-one': _index < total}">下一题</span>
             </div>
         </footer>
 
         <ModalComponent 
-            :show.sync="modalVisible" 
+            v-if="modalVisible" 
             :text="model.explanation" 
-            :key="model.key_topic"
+            :keyword="model.key_topic"
+            :key-answer="model.key_answer"
             @confirm="rePlayVoice"
             @cancel="stopPlayVoice"
+            @close="closeModal"
         />
     </div>
 </template>
 <script>
 import ModalComponent from '@/components/modal';
+import { setTimeout } from 'timers';
 const model = wx.getSystemInfoSync().model;
 const isIPX = model.search('iPhone X') !== -1;
 export default {
@@ -64,15 +75,35 @@ export default {
     data() {
         return {
             options: [],
-            itemTrue: '0',
             isIPX: isIPX,
             modalVisible: false,
-            innerAudioContext: wx.createInnerAudioContext()
+            innerAudioContext: null
         };
     },
     computed: {
         _index() {
             return this.index + 1;
+        },
+        contentImage() {
+            // return 'cloud://drive-223675.6472-drive-223675' + this.model.content_img;
+            // return 'http://img.jx885.com/lrjk' + this.model.content_img;
+            return 'https://6472-drive-223675-1258743257.tcb.qcloud.la' + this.model.content_img;
+        },
+        rightInx() {
+            if(+this.model.type === 1) {
+                console.log(Number(this.model.item_true) - 1);
+                return Number(this.model.item_true) - 1;
+            } else {
+                let rInx = 0; 
+                this.options.some((item, inx) => {
+                    if(item.value === this.model.key_words) {
+                        rInx = inx;
+                        return true;
+                    }
+                });
+
+                return rInx;
+            }
         }
     },
     components: {
@@ -82,14 +113,86 @@ export default {
         model: {
             handler(value) {
                 console.log(value);
+                this.initAudioContext();
                 this.setOptions();
+
+                // this.setContentImage();
+                // this.modalShow();
             },
             deep: true
         }
     },
     methods: {
-        modalShow() {
+        closeModal() {
+            this.stopPlayVoice();
+            this.modalVisible = false;
+        },
+        setContentImage() {
+            const vm = this;
+            if(this.model.content_img) {
+                const model = this.model;
+                // let basePath = 'cloud://drive-223675.6472-drive-223675';
+                // const image = basePath + this.model.content_img;
+                // this.contentImage = basePath + this.model.content_img;
+                let basePath = 'http://img.jx885.com/lrjk';
+                // 下载图片
+                wx.downloadFile({
+                    url: basePath + model.content_img,
+                    success(res) {
+                        if(res.statusCode === 200) {
+                            let tempFilePath = res.tempFilePath;
+
+                            wx.compressImage({
+                                src: tempFilePath,
+                                quality: 45,
+                                success(res) {
+                                    let image = res.tempFilePath;
+                                    wx.cloud.uploadFile({
+                                        cloudPath: model.content_img.replace('/', ''),
+                                        filePath: image,
+                                        success(res) {
+                                            console.log('上传成功', res);
+                                            vm.goToNext();
+                                        },
+                                        fail(res) {
+                                            console.log(res);
+                                        }
+                                    });
+                                }
+                            })
+                        }
+                    }
+                });
+            } else {
+                this.goToNext();
+            }
+        },
+        initAudioContext() {
+            this.innerAudioContext = wx.createInnerAudioContext();
+            this.innerAudioContext.autoplay = true;
+        },
+        async modalShow() {
             this.modalVisible = true;
+            // let path = this.model.audio;
+            // if(this.model.audio.indexOf('/') === -1) {
+            //     path = 'content/audio/vixf/km1/' + this.model.audio
+            // } else {
+            //     path = path.replace('/', '');
+            // }
+            
+            // wx.cloud.callFunction({
+            //     name: 'getAudio',
+            //     data: {
+            //         text: this.model.explanation,
+            //         path: path
+            //     },
+            //     success: res => {
+            //         this.goToNext();
+            //     },
+            //     fail: err => {
+            //         console.error('[云函数] [login] 调用失败', err)
+            //     }
+            // })
             this.showVoice();
         },
         modalCancel() {
@@ -99,7 +202,13 @@ export default {
             this.showVoice();
         },
         showVoice() {
-            this.innerAudioContext.src = 'cloud://te-3db4f8.7465-te-3db4f8/audios/' + this.model.audio;
+            let classify = this.model.classify;
+            let basePath = 'cloud://drive-223675.6472-drive-223675';
+            let src = (classify === '11' || classify === '12')
+                ? basePath + '/content/audio/vixf/km1/' + this.model.audio
+                : basePath + this.model.audio;
+
+            this.innerAudioContext.src = src;
             this.innerAudioContext.play();
         },
         rePlayVoice() {
@@ -128,6 +237,7 @@ export default {
                 })
                 return;
             }
+            // this.contentImage = '';
             this.$emit('update:index', this.index + 1);
         },
         goToPrevious() {
@@ -146,17 +256,12 @@ export default {
                 })
                 return;
             }
+            // this.contentImage = '';
             this.$emit('update:index', this.index - 1);
         },
         setOptions() {
             const model = this.model;
-            if(this.resultMap[this.index] !== undefined) {
-                const res = this.resultMap[this.index];
-
-                this.options[+res.selected - 1].checked = true;
-                return;
-            }
-            // 选择题
+            // 正确错误题
             if(model.type === '1') {
                 this.options = [{
                     index: '1',
@@ -195,32 +300,35 @@ export default {
                 }]
             }
 
-            this.itemTrue = model.item_true;
+            if(this.resultMap[this.index] !== undefined) {
+                const res = this.resultMap[this.index];
+
+                this.options[+res.selected].checked = true;
+
+                if(parseInt(res.selected) !== this.rightInx) {
+                    this.options[this.rightInx].checked = true;
+                }
+            }
         },
         selectAnswer(target) {
-            this.options[+target - 1].checked = true;
+            this.options[+target].checked = true;
 
-            if(target === this.model.item_true) {
-                wx.showToast({
-                    icon: 'none',
-                    title: '正确'
-                });
+            // 选正确错误的题看item_true,其他的看key_words
+            if(target === this.rightInx) {
                 this.resultMap[this.index] = {
                     selected: target,
                     answer: true
                 };
-                this.goToNext();
+                setTimeout(() => {
+                    this.goToNext();
+                }, 500);
             }else {
-                wx.showToast({
-                    icon: 'none',
-                    title: '错误'
-                });
-
-                this.modalShow();
                 this.resultMap[this.index] = {
                     selected: target,
                     answer: false
                 };
+                this.modalShow();
+                this.options[this.rightInx].checked = true;
             }
         },
         showInstruction() {
@@ -237,14 +345,13 @@ export default {
                 }
             })
         }
-    },
-    onLoad() {
-        // this.setOptions();
     }
 };
 </script>
 <style lang="less">
 .component-question-item {
+    height: 100%;
+    background: #ebeff2;
     .question-content {
         padding: 36rpx 40rpx;
         font-size: 32rpx;
@@ -253,13 +360,22 @@ export default {
         padding-left: 40rpx;
         font-size: 32rpx;
         color: #E60000;
-        margin-top: 42rpx;
+        // margin-top: 42rpx;
 
         img {
             width: 30rpx;
             height: 42rpx;
             vertical-align: top;
             margin-right: 32rpx;
+        }
+    }
+    .image-box {
+        padding-top: 36rpx;
+        width: 100%;
+        height: 444rpx;
+        img {
+            width: 100%;
+            height: 100%;
         }
     }
     .checkbox-container {
@@ -279,6 +395,15 @@ export default {
                 border: 1rpx solid #979797;
                 border-radius: 50%;
                 font-size: 28rpx;
+            }
+
+            .right-answer,
+            .false-answer {
+                width: 48rpx;
+                height: 48rpx;
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 24rpx;
             }
 
             .value {
@@ -307,7 +432,7 @@ export default {
 
             }
 
-            .last-one {
+            .valid-one {
                 color: #09BB07;
             }
         }
@@ -319,7 +444,7 @@ export default {
         }
     }
     .is-iphone-x {
-        bottom: 68rpx;
+        height: 166rpx;
     }
 
     // // 隐藏样式

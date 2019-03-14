@@ -23,13 +23,16 @@ export default {
                 })
                 return;
             }
+
+            wx.showLoading({
+                title: ''
+            });
             // 调用登录接口
             wx.login({
                 success: () => {
                     wx.getUserInfo({
                         success: (res) => {
                             this.userInfo = res.userInfo
-                            wx.setStorageSync('user_info', this.userInfo);
                             this.checkCode();
                         }
                     })
@@ -52,9 +55,13 @@ export default {
                 });
 
                 const nowTime = res3.result.time;
-                const endTime = nowTime + 30 * 24 * 3600;
+                let endTime = nowTime + 30 * 24 * 3600;
 
-                wx.cloud.init({ env: 'test' })
+                if(res.result.code.master) {
+                    endTime = nowTime + 10000 * 24 * 3600;
+                }
+
+                wx.cloud.init({ env: 'drive' })
                 const db = wx.cloud.database()
 
                 // 绑定激活码
@@ -67,6 +74,8 @@ export default {
                     }
                 });
 
+                this.userInfo.master = res.result.code.master || false
+
                 // 绑定用户
                 await db.collection('users')
                 .add({
@@ -75,17 +84,30 @@ export default {
                     }
                 });
 
+                wx.setStorageSync('user_info', this.userInfo);
+
+                wx.hideLoading();
+
                 wx.navigateTo({
                     url: '/pages/index/index'
                 })
             }
             else {
+                wx.hideLoading();
+
                 wx.showToast({
                     title: res.result.errMsg,
                     icon: 'none'
                 });
             }
 
+        }
+    },
+    onShareAppMessage(res) {
+        return {
+            title: '苏锦成教练为你特别奉献',
+            path: '/pages/pre/index',
+            imageUrl: 'https://6472-drive-223675-1258743257.tcb.qcloud.la/poster.png'
         }
     }
 }

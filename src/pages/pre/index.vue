@@ -16,7 +16,7 @@ export default {
                 // 已绑定激活码，激活码有效
                 if(res.result.status === 200) {
                     // 获取用户信息
-                    wx.cloud.init({ env: 'test' })
+                    wx.cloud.init({ env: 'drive' })
                     const db = wx.cloud.database()
                     const res = await db.collection('users')
                     .where({

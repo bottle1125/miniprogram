@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="height: 100%;">
         <QuestionItem
             :model="contents[currentIndex]" 
             :index.sync="currentIndex"
@@ -12,6 +12,8 @@
             v-if="showList"
             :model="contents" 
             :current-index.sync="currentIndex"
+            :result-map="resultMap"
+            @close="closeResultMap"
         />
     </div>
 </template>
@@ -34,11 +36,17 @@ export default {
         QuestionList
     },
     methods: {
+        closeResultMap() {
+            this.showList = false;
+        },
         openResultList() {
             this.showList = true;
         },
         loadQuestions() {
             this.show = true;
+            wx.showLoading({
+                title: '题目准备中'
+            });
             wx.cloud.init();
             wx.cloud.callFunction({
                 name: 'getCources',
@@ -48,6 +56,7 @@ export default {
             })
             .then(res => {
                 this.contents = JSON.parse(res.result[0].data).datas;
+                wx.hideLoading();
             })
             .catch(console.error)
         }
